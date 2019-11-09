@@ -3,25 +3,25 @@ contract SiteManagement {
 
 	// a data sturcture is used to save each saved site's information.
 	struct Site {
-		address owner;
-		address addr;
-		uint    timestamp;
-		bytes32 description;
+		address owner;		// registerSite function performer's ethereum address.
+		address addr;		// VerifiedSite contract ethereum address.
+		uint    timestamp;	// UNIX time format of writing time (block time).
+		bytes32 description;	// extra information given by user.
 	}
 	
 	// number of current saved sites.
 	uint public numSites;
 	
-	// mapping sturcture (Key -> Site sturcture); regSites for registered site(s); unregSites for unregistered site(s)
-	mapping (bytes32 => Site) regSites;
-	mapping (bytes32 => Site) unregSites;
+	// mapping sturcture (Key -> Site sturcture)
+	mapping (bytes32 => Site) regSites;	// regSites for registered site(s)
+	mapping (bytes32 => Site) unregSites;	// unregSites for unregistered site(s)
 	
 	// contract initialization.
 	constructor() public {
 		numSites = 0;
 	}
 	
-	/* registerSite is a function write a VerifiedSite contract address and informations to global regSite
+	/* registerSite is a function that write a VerifiedSite contract address and informations to global regSite
 	   input _fqdn: sites fully qualified domain name.
 		 _addr: sites VerifiedSite contract address.
 		 _description: information given by function user.
@@ -44,7 +44,7 @@ contract SiteManagement {
 			return false;
 		}
 	}
-	/* unregisterSite is a function remove a registered VerifiedSite contract from global regSite,
+	/* unregisterSite is a function that remove a registered VerifiedSite contract from global regSite,
 	                  and dupicate a copy to unregSite for contract users to review.
 	   input _fqdn: sites fully qualified domain name that its owner wants to  .
 	   output bool: ture if function success; false on the contrary.

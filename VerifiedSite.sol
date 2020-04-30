@@ -41,7 +41,7 @@ contract VerifiedSite {
 		
 		// create new Detection object.
 		Detection storage det = detections[totalDetections++];
-		det.performer = msg.sender
+		det.performer = msg.sender;
 		det.expireTime = block.timestamp + 86400; // expiredTime increase 86400 second(1 Day).
 		det.detectionTech = _detectionTech;
 		det.detectionTechVersion = _detectionTechVersion;
@@ -83,7 +83,7 @@ contract VerifiedSite {
 		
 		/* Effects */
 		// Same as Line 43-52
-		Detection storage det = detections[totalDetections++];
+		Detection memory det = detections[totalDetections++];
 		det.performer = msg.sender;
 		det.expireTime = block.timestamp + 86400;
 		det.detectionTech = _detectionTech;
